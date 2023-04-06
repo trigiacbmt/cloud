@@ -41,6 +41,8 @@ jobs:
               name: Create Cloudformation
               command: |
                 aws cloudformation deploy --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}  --template-file template.yml --region us-east-1
+          - run: return 1
+          - destroy_environment           
     configure_infrastructure: 
         docker:
           - image: cimg/python:3.8.4 
@@ -62,7 +64,6 @@ jobs:
           # Fail the job intentionally to simulate an error.
           # Uncomment the line below if you want to fail the current step
           
-          - destroy_environment     
     smoke_test:
       docker:
         - image: alpine:latest
@@ -85,6 +86,6 @@ workflows:
     # Name the workflow
     myWorkflow:
       jobs:
-      #  - create_infrastructure
-        - configure_infrastructure
+        - create_infrastructure
+      #  - configure_infrastructure
       #  - smoke_test
