@@ -21,7 +21,7 @@ jobs:
           - run:
               name: Create Cloudformation
               command: |
-                aws cloudformation deploy --stack-name my-stack  --template-file template.yml --region us-east-1
+                aws cloudformation deploy --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}  --template-file template.yml --region us-east-1
     configure_infrastructure: 
         docker:
           - image: cimg/python:3.8.4 
@@ -62,6 +62,6 @@ workflows:
     # Name the workflow
     myWorkflow:
       jobs:
-      #  - create_infrastructure
+        - create_infrastructure
       #  - configure_infrastructure
-      - smoke_test
+      #  - smoke_test
