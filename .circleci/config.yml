@@ -61,9 +61,7 @@ jobs:
                 ansible-playbook -i inventory playbook.yml
           # Fail the job intentionally to simulate an error.
           # Uncomment the line below if you want to fail the current step
-          - run: 
-              command: |
-                return 1
+          
           - destroy_environment     
     smoke_test:
       docker:
