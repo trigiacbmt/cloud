@@ -85,7 +85,7 @@ jobs:
         - image: amazon/aws-cli
       steps:
         -checkout
-        -run:
+        - run:
           name: Execute bucket.yml - Create CloudFormation Stack
           command: |
           aws cloudformation deploy \
